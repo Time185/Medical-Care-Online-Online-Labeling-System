@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService{
 		
 		//email:收件人地址
 		//emailMsg:邮件的内容
-		//String emailMsg="欢迎您注册成我们的一员,<a href='http://222.24.62.91/BB/user?method=active&code="+user.getCode()+"'>点此激活</a>";
+		//String emailMsg="欢迎您注册成我们的一员,<a href='http://10.15.0.10/BB/user?method=active&code="+user.getCode()+"'>点此激活</a>";
 		//MailUtils.sendMail(user.getEmail(), emailMsg);
 	}
 

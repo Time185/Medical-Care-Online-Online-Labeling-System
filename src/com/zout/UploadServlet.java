@@ -98,7 +98,7 @@ public class UploadServlet extends HttpServlet {
 
         // 构造临时路径来存储上传的文件
         // 这个路径相对当前应用的目录
-        //String uploadPath ="/data/tanjiale/";
+        //String uploadPath ="/home/wangning/";
         HttpSession session = request.getSession();       
         String resParentPath = (String) session.getAttribute("resParentPath");
         /*String[] nameStore1=((String) session.getAttribute("name")).split("_");

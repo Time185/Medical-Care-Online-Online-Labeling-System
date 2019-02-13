@@ -21,7 +21,7 @@ import cn.itcast.servlet.BaseServlet;
 
 public class UserServlet extends BaseServlet {
 	private UserService userService = new UserService();
-	String path="/data/tanjiale/asd/";
+	String path="/home/wangning/asd/";
 	
 	// ajax用户名是否注册校验
 	public String ajaxValidateLoginname(HttpServletRequest req, HttpServletResponse resp)
@@ -180,7 +180,7 @@ public class UserServlet extends BaseServlet {
 		if(verifyCode == null || verifyCode.trim().isEmpty()) {
 			errors.put("verifyCode", "验证码不能为空！");
 		}else if(verifyCode.equals("qnyg")) {
-			//http://222.24.62.91:8080/BB/UserServlet?method=login&loginname=011_ma&loginpass=ma123&verifyCode=vCodeConstant&submit=%E7%AB%8B++%E5%8D%B3++%E7%99%BB++%E5%BD%95
+			//http://10.15.0.10:8080/BB/UserServlet?method=login&loginname=011_ma&loginpass=ma123&verifyCode=vCodeConstant&submit=%E7%AB%8B++%E5%8D%B3++%E7%99%BB++%E5%BD%95
 		} else if(!verifyCode.equalsIgnoreCase(vcode)) {
 			errors.put("verifyCode", "验证码错误！");
 		}
@@ -301,7 +301,7 @@ public class UserServlet extends BaseServlet {
 						Cookie cookie = new Cookie("loginname", loginname);
 						cookie.setMaxAge(60 * 60 * 24 * 10);//保存10天
 						resp.addCookie(cookie);
-						String returnUrl="http://222.24.62.91:8080/BB/jsps/test.jsp?param0=000&param1=000&param2=000&param3=000&param4=000&param5=000";
+						String returnUrl="http://10.15.0.10:8080/BB/jsps/test.jsp?param0=000&param1=000&param2=000&param3=000&param4=000&param5=000";
 						System.out.println("hahahahahaha");
 						req.getSession().setAttribute("returnUrl", returnUrl);
 						return "r:/qiye_admin/HTML_model/index.jsp";
@@ -391,7 +391,7 @@ public class UserServlet extends BaseServlet {
 			errorShowIf=1;
 		    }
 		} else if(verifyCode.equals("vCodeConstant")) {
-			//http://222.24.62.91:8080/BB/UserServlet?method=login&loginname=011_ma&loginpass=ma123&verifyCode=vCodeConstant&submit=%E7%AB%8B++%E5%8D%B3++%E7%99%BB++%E5%BD%95
+			//http://10.15.0.10:8080/BB/UserServlet?method=login&loginname=011_ma&loginpass=ma123&verifyCode=vCodeConstant&submit=%E7%AB%8B++%E5%8D%B3++%E7%99%BB++%E5%BD%95
 		}else if(!verifyCode.equalsIgnoreCase(vcode)) {
 			if(errorShowIf==0){
 			errors.put("msg", "验证码错误！");

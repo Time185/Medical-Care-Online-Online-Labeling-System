@@ -24,7 +24,7 @@ public class MailUtils {
 		props.setProperty("mail.transport.protocol", "SMTP");
 		
 		//设置发送邮件的服务器
-		props.setProperty("mail.host", "222.24.62.91");
+		props.setProperty("mail.host", "10.15.0.10");
 		props.setProperty("mail.smtp.auth", "true");// 指定验证为true
 
 		// 创建验证器

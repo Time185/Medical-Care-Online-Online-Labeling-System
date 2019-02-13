@@ -48,8 +48,8 @@
 	<c:otherwise>
 		      大智慧会员：${sessionScope.sessionUser.loginname }&nbsp;&nbsp;|&nbsp;&nbsp;
 		  <a href="<c:url value='/UserServlet?method=quit'/>" target="_parent">退出</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		  <a href="http://222.24.62.91:8080/BB/jsps/test.jsp?param0=000&param1=000&param2=000&param3=000&param4=000&param5=000" target="_top">目录树</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		  <a href="http://222.24.62.91:8080/BB/qiye_admin/HTML_model/index.jsp" target="_top">联系我们</a>	
+		  <a href="http://10.15.0.10:8080/BB/jsps/test.jsp?param0=000&param1=000&param2=000&param3=000&param4=000&param5=000" target="_top">目录树</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		  <a href="http://10.15.0.10:8080/BB/qiye_admin/HTML_model/index.jsp" target="_top">联系我们</a>	
 	</c:otherwise>
 </c:choose>
 

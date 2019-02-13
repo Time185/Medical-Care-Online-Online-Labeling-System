@@ -26,14 +26,14 @@ module.exports = function(grunt) {
             prod: {
                 options: {
                     port: 8080,
-                    hostname: '222.24.62.91',
+                    hostname: '10.15.0.10',
                     livereload: true
                 }
             },
             dev: {
                 options: {
                     port: 8080,
-                    hostname: '222.24.62.91',
+                    hostname: '10.15.0.10',
                     livereload: true,
                     base: {
                         path: './',

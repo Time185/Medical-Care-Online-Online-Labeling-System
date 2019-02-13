@@ -14,10 +14,10 @@ dwv-jqmobile is not certified for diagnostic use. Released under GNU GPL-3.0 lic
 # install dependencies
 yarn install
 
-# serve at 222.24.62.91:8080 with live reload
+# serve at 10.15.0.10:8080 with live reload
 yarn run start
 
-# serve a developement version at 222.24.62.91:8080 with live reload
+# serve a developement version at 10.15.0.10:8080 with live reload
 yarn run dev
 
 # run unit tests

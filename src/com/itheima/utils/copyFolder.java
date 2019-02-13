@@ -10,9 +10,9 @@ import java.io.IOException;
 
 public class copyFolder {
 	public static void main(String[] args) throws IOException {
-		String filepath = "/data/tanjiale/Desktop2/";
+		String filepath = "/home/wangning/Desktop2/";
 		File file=new File(filepath);
-	    String path = "/data/tanjiale/Desktop/";// 要复制的文件夹
+	    String path = "/home/wangning/Desktop/";// 要复制的文件夹
         String copyPath = file.getPath();// 要复制到的地方
         copy(path,copyPath);
     }

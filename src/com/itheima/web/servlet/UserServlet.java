@@ -71,7 +71,7 @@ public class UserServlet extends BaseServlet {
 		//xin jian wen jia
 		ResourceBundle resource = ResourceBundle.getBundle("peizhi");
 		String source_path = resource.getString("source_path"); 
-		//String source_path="/data/tanjiale/LUNA2016/";
+		//String source_path="/home/wangning/LUNA2016/";
 		String copy_path=resource.getString("root_path")+user.getUsername();
 		copyFolder.copy(source_path, copy_path);
 		//3.页面请求转发

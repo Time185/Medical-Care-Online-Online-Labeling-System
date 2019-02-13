@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="java.io.File"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="java.net.URLDecoder"%>
-<%!String websit = "http://222.24.62.91:8080/BB/jsps/test.jsp?";%>
+<%!String websit = "http://10.15.0.10:8080/BB/jsps/test.jsp?";%>
 <%!int fontSize = 0;%>
 <%!int number = 0;%>
 <%!String name;%>
@@ -179,7 +179,7 @@ function onSearch(obj){//js函数开始
 			<%!String parameter[] = { "000", "000", "000", "000", "000", "000" };
 			%>
 			<%!int i;%>
-			<%!String path = "/data/tanjiale/asd";%>
+			<%!String path = "/home/wangning/asd";%>
 			<%!String otherDoctor;%>
 			<%!int chosenIf=0;%>
 			<%!int chosenFlag=0;%>
@@ -199,7 +199,7 @@ function onSearch(obj){//js函数开始
 				System.out.println("修改后名字：" + newFile.getAbsolutePath());
 				if (oldFile.renameTo(newFile)) {
 					try{
-					copyFile(new File("/data/tanjiale/rename/"),newFile);
+					copyFile(new File("/home/wangning/rename/"),newFile);
 					deleteDir(new File(newFile.getAbsolutePath()+"/rename"));
 					}catch(Exception e){
 						System.out.println(e);
@@ -216,7 +216,7 @@ function onSearch(obj){//js函数开始
 				res.add(oldFile.getName() + "_" + name);
 				if (oldFile.renameTo(newFile)) {
 					try{
-						copyFile(new File("/data/tanjiale/rename/"),newFile);
+						copyFile(new File("/home/wangning/rename/"),newFile);
 						deleteDir(new File(newFile.getAbsolutePath()+"/rename"));
 						}catch(Exception e){
 							System.out.println(e);
@@ -251,7 +251,7 @@ function onSearch(obj){//js函数开始
 				path = path + "/" + thisHospital;
 				System.out.println("失败！"+path);
 			//delete contains chinese file	
-			/*final String deleteChineseString = "/data/tanjiale/asd" + "/" + thisHospital;
+			/*final String deleteChineseString = "/home/wangning/asd" + "/" + thisHospital;
 			System.out.println(deleteChineseString + "deleteChineseString+++++++++++++++++++");
 			File deleteChineseName = new File(deleteChineseString);
 			File[] deleteChinese = deleteChineseName.listFiles();
@@ -265,7 +265,7 @@ function onSearch(obj){//js函数开始
 				}
 				
 			}*/
-			    String returnUrl= "http://222.24.62.91:8080/BB/jsps/test.jsp?";
+			    String returnUrl= "http://10.15.0.10:8080/BB/jsps/test.jsp?";
 			    String returnUrl1=returnUrl;
 			    String para5="000";
 				for (i = 0; i <= 5; i++) {
@@ -291,18 +291,18 @@ function onSearch(obj){//js函数开始
 				}
 				returnUrl=returnUrl+"param5=000";
 				returnUrl1=returnUrl1+"param5="+para5;
-				}else returnUrl=" http://222.24.62.91:8080/BB/jsps/test.jsp?param0=000&param1=000&param2=000&param3=000&param4=000&param5=000";
+				}else returnUrl=" http://10.15.0.10:8080/BB/jsps/test.jsp?param0=000&param1=000&param2=000&param3=000&param4=000&param5=000";
 				session.setAttribute("returnUrl",returnUrl); 
 				session.setAttribute("backPath",path); 
 				System.out.println(returnUrl+"**************************************");
 				backLayer=0;
 				String returnUrl2=returnUrl;
 				returnUrl="";
-				String asdHospital = "/data/tanjiale/asd" + "/" + thisHospital;		
+				String asdHospital = "/home/wangning/asd" + "/" + thisHospital;		
 				File uploadDir = new File(path);
 		        if (!uploadDir.exists()) {
 		        	System.out.println( "------path---uploadDir.exists()----");
-		        	response.sendRedirect("http://222.24.62.91:8080/BB/jsps/test.jsp?param0=000&param1=000&param2=000&param3=000&param4=000&param5=000");	
+		        	response.sendRedirect("http://10.15.0.10:8080/BB/jsps/test.jsp?param0=000&param1=000&param2=000&param3=000&param4=000&param5=000");	
 		        	path=asdHospital;
 		        	chosenIf=1;
 		        }
@@ -318,7 +318,7 @@ function onSearch(obj){//js函数开始
 						if (res != null) {
 							path = res.get(0);
 							parameter[0]=res.get(1);
-							response.sendRedirect("http://222.24.62.91:8080/BB/jsps/test.jsp?param0="+chosenName[0]+"_"+thisDoctor+"&param1=000&param2=000&param3=000&param4=000&param5=000");
+							response.sendRedirect("http://10.15.0.10:8080/BB/jsps/test.jsp?param0="+chosenName[0]+"_"+thisDoctor+"&param1=000&param2=000&param3=000&param4=000&param5=000");
 						}
 						tmpChosenFile=null;
 						System.out.println(res.toString() + "------path-------" + path);
@@ -349,7 +349,7 @@ function onSearch(obj){//js函数开始
 			<%  
 				file = new File(path);
 			    try{
-				copyFile(new File("/data/tanjiale/rename/"),file);
+				copyFile(new File("/home/wangning/rename/"),file);
 				deleteDir(new File(file.getAbsolutePath()+"/rename"));
 				}catch(Exception e){
 					System.out.println(e);
@@ -367,9 +367,9 @@ function onSearch(obj){//js函数开始
 				Map<String,String> timemodify_hash=dirmsg_map.getTime();
 				//判断是否为文件
 				if(childs!=null&&childs[0].getAbsolutePath().contains(".")){
-					String githubRaw = "http://222.24.62.91:8080/test";
+					String githubRaw = "http://10.15.0.10:8080/test";
 					String[] resArray=new String[childs.length];
-					String temp="/data/tanjiale/asd";
+					String temp="/home/wangning/asd";
 					for(int ii=0,jj=0;ii<childs.length;ii++,jj++){
 						String absPath=childs[ii].getAbsolutePath();
 						if(jj == 0){						
@@ -380,7 +380,7 @@ function onSearch(obj){//js函数开始
 							File  tagDicomPath = new File(resParentPath);
 							if(tagDicomPath.exists()){
 								String jsonPath=resParentPath+File.separator+"state.json";
-								jsonPath=jsonPath.replace(temp,"http://222.24.62.91:8080/test");
+								jsonPath=jsonPath.replace(temp,"http://10.15.0.10:8080/test");
 								jsonPath=jsonPath.replace("/", "/");
 								session.setAttribute("resParentPath",resParentPath);
 								System.out.println(jsonPath+"----------------res");
@@ -388,7 +388,7 @@ function onSearch(obj){//js函数开始
 								session.setAttribute("loadIf", "1");
 							}else{
 								String jsonPath=resParentPath+File.separator+"state.json";
-								jsonPath=jsonPath.replace(temp,"http://222.24.62.91:8080/test");
+								jsonPath=jsonPath.replace(temp,"http://10.15.0.10:8080/test");
 								jsonPath=jsonPath.replace("/", "/");
 								session.setAttribute("resParentPath",resParentPath);
 								session.setAttribute("jsonPath",jsonPath);
@@ -402,17 +402,17 @@ function onSearch(obj){//js函数开始
 						System.out.println(resArray[ii]+"-----------res"+"**************"+i);
 					}
 					session.setAttribute("resPATH", resArray);
-					//response.sendRedirect("http://222.24.62.91:8080/BB/DWV/index.jsp");
+					//response.sendRedirect("http://10.15.0.10:8080/BB/DWV/index.jsp");
 					%>
 					<script>
 					
-					parent.window.location.href='http://222.24.62.91:8080/BB/DWV/index.jsp'
+					parent.window.location.href='http://10.15.0.10:8080/BB/DWV/index.jsp'
 					</script>
 					<%
 				}
 				
 				updatePath=path;
-				path = "/data/tanjiale/asd";
+				path = "/home/wangning/asd";
 
 				for (j = 0; j <= 5; j++) {
 
@@ -544,7 +544,7 @@ function onSearch(obj){//js函数开始
 					         childs=null;
 					         file = new File(updatePath);
 							    try{
-								copyFile(new File("/data/tanjiale/rename/"),file);
+								copyFile(new File("/home/wangning/rename/"),file);
 								deleteDir(new File(file.getAbsolutePath()+"/rename"));
 								}catch(Exception e){
 									System.out.println(e);

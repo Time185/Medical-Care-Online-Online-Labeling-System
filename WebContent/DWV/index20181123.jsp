@@ -67,7 +67,7 @@
 <!-- Launch the app -->
 <script type="text/javascript" >
       //The location of state.json and uploadServlet
-      //var backUrl='http://222.24.62.91:8080/AB_/2/2.dcm';
+      //var backUrl='http://10.15.0.10:8080/AB_/2/2.dcm';
       var loadIf ="<%=session.getAttribute("loadIf")%>";
       if (loadIf=="1"){
     	  loadIf=1;
@@ -77,18 +77,18 @@
       //var loadIf= 1;
       var jsonUrl="<%=session.getAttribute("jsonPath")%>";
       <%System.out.println(session.getAttribute("jsonPath")+"-----------index");%>
-      var uploadServletUrl="http://222.24.62.91:8080/BB/UploadServlet";
-      var dicomList=["http://222.24.62.91:8080/AB_/2/1.dcm",
-    	  "http://222.24.62.91:8080/AB_/2/2.dcm",
-    	  "http://222.24.62.91:8080/AB_/2/3.dcm",
-    	  "http://222.24.62.91:8080/AB_/2/4.dcm",
-    	  "http://222.24.62.91:8080/AB_/2/5.dcm",
-    	  "http://222.24.62.91:8080/AB_/2/6.dcm",
-    	  "http://222.24.62.91:8080/AB_/2/7.dcm",
-    	  "http://222.24.62.91:8080/AB_/2/8.dcm",
-    	  "http://222.24.62.91:8080/AB_/2/9.dcm",
-    	  "http://222.24.62.91:8080/AB_/2/0.dcm",
-    	  "http://222.24.62.91:8080/AB_/2/10.dcm"
+      var uploadServletUrl="http://10.15.0.10:8080/BB/UploadServlet";
+      var dicomList=["http://10.15.0.10:8080/AB_/2/1.dcm",
+    	  "http://10.15.0.10:8080/AB_/2/2.dcm",
+    	  "http://10.15.0.10:8080/AB_/2/3.dcm",
+    	  "http://10.15.0.10:8080/AB_/2/4.dcm",
+    	  "http://10.15.0.10:8080/AB_/2/5.dcm",
+    	  "http://10.15.0.10:8080/AB_/2/6.dcm",
+    	  "http://10.15.0.10:8080/AB_/2/7.dcm",
+    	  "http://10.15.0.10:8080/AB_/2/8.dcm",
+    	  "http://10.15.0.10:8080/AB_/2/9.dcm",
+    	  "http://10.15.0.10:8080/AB_/2/0.dcm",
+    	  "http://10.15.0.10:8080/AB_/2/10.dcm"
     	  ];
       var   dicomList=new Array();
       <% 
@@ -117,7 +117,7 @@
 <h1>标注系统 <span class="dwv-version"></span></h1>
 <a href="#help_page" data-i18n="basics.help" data-icon="carat-r" class="ui-btn-right"
   data-transition="slide" >Help</a>
-<a href="http://222.24.62.91:8080/BB/qiye_admin/HTML_model/index.jsp" data-icon="carat-l" class="ui-btn-left"
+<a href="http://10.15.0.10:8080/BB/qiye_admin/HTML_model/index.jsp" data-icon="carat-l" class="ui-btn-left"
   data-transition="slide" data-i18n="basics.back">back</a>
 </div><!-- /pageHeader -->
 

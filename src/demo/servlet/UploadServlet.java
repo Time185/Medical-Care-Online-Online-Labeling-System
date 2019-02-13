@@ -95,7 +95,7 @@ public class UploadServlet extends HttpServlet {
 		
 		//post���ļ���ŵ�Ŀ¼
         //File tempDirPath =new File(request.getSession().getServletContext().getRealPath("/")+userFile.getPath());
-		File tempDirPath =new File("/data/tanjiale/asd/"+userFile.getPath());
+		File tempDirPath =new File("/home/wangning/asd/"+userFile.getPath());
         
         if(!tempDirPath.exists()){  
             tempDirPath.mkdirs();
@@ -158,8 +158,8 @@ public class UploadServlet extends HttpServlet {
        UnZipOrRarUtils myzip = new UnZipOrRarUtils();
        try {
 		String strs1=username.split("_")[0]; 
-	    String judgePath = "/data/tanjiale/asd/"+strs1;
-	    String using = "/data/tanjiale/asd/"+strs1+"/using";
+	    String judgePath = "/home/wangning/asd/"+strs1;
+	    String using = "/home/wangning/asd/"+strs1+"/using";
 	    File usingFile = new File(using);
 	    if (!usingFile.exists()) {                           
 	    	usingFile.mkdir();     

@@ -89,7 +89,7 @@ var uploadingFile="";
 $(document).ready(function() {  
     $("#uploadify").uploadify({  
         'swf'            : 'plugin/uploadify/uploadify.swf', //上传的Flash，不用管，路径对就行
-        'uploader'       : 'http://222.24.62.91:8080/BB/UploadServlet1?name='+username,  //处理上传动作的的urljava  
+        'uploader'       : 'http://10.15.0.10:8080/BB/UploadServlet1?name='+username,  //处理上传动作的的urljava  
         'folder'         : 'userFile.getPath',  //Post文件到指定的处理文件/upload
         'queueID'        : 'fileQueue', //与下面的id对应
         'cancelImg'      : 'plugin/uploadify/uploadify-cancel.png',//取消按钮的图片路径

@@ -80,7 +80,7 @@
       <p>  &nbsp;&nbsp;&nbsp;&nbsp;由于您长时间未进行操作，您已与当前服务断开连接。请点击返回按钮并重新登录。</p>
       <p class="paddingbox"></p>
 
-      <div style="text-align:center;"><a href="javascript:parent.window.location.href='http://222.24.62.91:8080/BB/jsps/user/loginx.jsp'" style="font-size:23px; color:yellow; text-align:center">返回</a> 
+      <div style="text-align:center;"><a href="javascript:parent.window.location.href='http://10.15.0.10:8080/BB/jsps/user/loginx.jsp'" style="font-size:23px; color:yellow; text-align:center">返回</a> 
       </div>
  
 

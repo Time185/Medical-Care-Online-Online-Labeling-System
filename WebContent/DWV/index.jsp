@@ -86,8 +86,8 @@
       //var loadIf= 1;
       var jsonUrl="<%=session.getAttribute("jsonPath")%>"+"|"+random;
       <%System.out.println(session.getAttribute("jsonPath")+"-----------index");%>
-      var uploadServletUrl="http://222.24.62.91:8080/BB/UploadServlet";
-      var dicomList=["http://222.24.62.91:8080/BB/2/1.dcm"
+      var uploadServletUrl="http://10.15.0.10:8080/BB/UploadServlet";
+      var dicomList=["http://10.15.0.10:8080/BB/2/1.dcm"
     	  ];
       var   dicomList=new Array();
       <% 
@@ -121,7 +121,7 @@
 <!-- pageHeader #dwvversion -->
 <div id="pageHeader" data-role="header">
 <h1>大智慧医疗在线标注系统 <span class="dwv-version"></span></h1>
-<a href="javascript:" onclick="window.location.href='http://222.24.62.91:8080/BB/qiye_admin/HTML_model/index.jsp';" data-icon="carat-l" class="ui-btn-left"
+<a href="javascript:" onclick="window.location.href='http://10.15.0.10:8080/BB/qiye_admin/HTML_model/index.jsp';" data-icon="carat-l" class="ui-btn-left"
   data-transition="slide" data-i18n="basics.back">back</a>
 <a href="#help_page" data-icon="carat-r" class="ui-btn-right"
   data-transition="slide" data-i18n="basics.help">Help</a>

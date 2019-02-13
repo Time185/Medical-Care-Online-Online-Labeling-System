@@ -21,7 +21,7 @@
     	}
     	obj.style.color="white"
     }
-    //if(log=="http://222.24.62.91:8080/BB/fileupload.jsp"){document.getElementById("a2").style.color="white";document.getElementById("a1").style.dispaly="none";}
+    //if(log=="http://10.15.0.10:8080/BB/fileupload.jsp"){document.getElementById("a2").style.color="white";document.getElementById("a1").style.dispaly="none";}
 	</script>
 	<div class="container">
 
@@ -32,13 +32,13 @@
 				</dt>
 				<dd>
 					<img class="coin11" src="img/coin111.png" /><a  
-					href="http://222.24.62.91:8080/BB/jsps/test.jsp?param0=000&param1=000&param2=000&param3=000&param4=000&param5=000"
+					href="http://10.15.0.10:8080/BB/jsps/test.jsp?param0=000&param1=000&param2=000&param3=000&param4=000&param5=000"
 					onclick="ChangeCss(this)"
 						target="main"
 						style="color:white" id="a1">标注</a>
 				</dd>
 				<dd>
-					<img class="coin11" src="img/coin111.png" /><a  href="http://222.24.62.91:8080/BB/fileupload.jsp"
+					<img class="coin11" src="img/coin111.png" /><a  href="http://10.15.0.10:8080/BB/fileupload.jsp"
 					onclick="ChangeCss(this)"
 						target="main"
 						style="color:green" id="a2">上传</a>
