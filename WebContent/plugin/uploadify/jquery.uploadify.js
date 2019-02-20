@@ -88,10 +88,8 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 
 				// Create a reference to the jQuery DOM object
 				var $this = $(this);
-
 				// Clone the original DOM object
 				var $clone = $this.clone();
-
 				// Setup the default options
 				var settings = $.extend({
 					// Required Settings
@@ -128,7 +126,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 					height          : 50,                 // The height of the browse button
 					
 					// Events
-					overrideEvents  : []             // (Array) A list of default event handlers to skip
+					overrideEvents  : [],           // (Array) A list of default event handlers to skip
 					/*
 					onCancel         // Triggered when a file is cancelled from the queue
 					onClearQueue     // Triggered during the 'clear queue' method
@@ -605,7 +603,6 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 		onSelect : function(file) {
 			// Load the swfupload settings
 			var settings = this.settings;
-
 			// Check if a file with the same name exists in the queue
 			var queuedFile = {};
 			for (var n in this.queueData.files) {

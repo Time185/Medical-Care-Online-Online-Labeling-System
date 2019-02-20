@@ -87,19 +87,20 @@ public class UploadServlet extends HttpServlet {
 		if(!hosptialFile.exists()){  
 			hosptialFile.mkdirs();  
         } 
+		System.out.println(hosptialFile.getAbsolutePath() + "*************hosptial");
 		File userFile = new File(hosptialFile.getPath()+"/"+strs[1].toString()); //ҽԺ�µ��û��ļ���
 		
 		if(!userFile.exists()){  
 			userFile.mkdirs();  
         }
-		
+		System.out.println(userFile.getAbsolutePath() + "*************userFile");
 		//post���ļ���ŵ�Ŀ¼
         //File tempDirPath =new File(request.getSession().getServletContext().getRealPath("/")+userFile.getPath());
 		File tempDirPath =new File("/home/wangning/asd/"+userFile.getPath());
         
         if(!tempDirPath.exists()){  
             tempDirPath.mkdirs();
-          
+            System.out.println(tempDirPath.getAbsolutePath() + "*************tempDirPath");
         //���������ļ�����  
         DiskFileItemFactory fac = new DiskFileItemFactory();      
         //����servlet�ļ��ϴ����  
@@ -170,6 +171,7 @@ public class UploadServlet extends HttpServlet {
 		for (int j = 0; j < judgeList.length; j++) {
 		      if (judgeList[j].isDirectory()) {
 		          String fileName = judgeList[j].getName();
+		          System.out.println(fileName + "+++++++++++++++++++++++++++++++fileName");
 		          String tempFileName=fileName.split("_")[0];				          
 		          orgName[j]=tempFileName;
 		      }
