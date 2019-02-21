@@ -30,116 +30,17 @@
 <script src="plugin/uploadify/jquery.uploadify.js" type="text/javascript"></script>
 <script src="http://stuk.github.io/jszip/dist/jszip.js"></script>
 <script src="http://stuk.github.io/jszip-utils/dist/jszip-utils.js"></script>
-<script>
+<script src="plugin/uploadify/uploadZipCheck.js" type="text/javascript"></script>
 
-	// 用来存放不符合规定的文件条目
-	var fileError = new Array();
-	//$("#file").on("change", function(evt) {
-	$(document).ready(function(){
-	$("#file").on("change" ,function(evt) {
-	// 清空之前显示的条目
-    $("#result").html("");
-    // be sure to show the results
-    
-    $("#result_block").removeClass("hidden").addClass("show");
-
-    // Closure to capture the file information.
-    function handleFile(f) {
-        // 压缩包名称
-        
-    	var $title = $("<h4>", {
-            text : f.name
-        });
-    	
-        var $fileContent = $("<h5>");
-        $("#result").append($title);
-        
-        $("#result").append($fileContent);
-        var dateBefore = new Date();
-        // 加载zip文件
-        JSZip.loadAsync(f)                                   // 1) read the Blob
-        .then(function(zip) {
-            var dateAfter = new Date();
-            $title.append($("<span>", {
-                "class": "small",
-                text:" (loaded in " + (dateAfter - dateBefore) + "ms)"
-            }));
-
-            zip.forEach(function (relativePath, zipEntry) {  // 2) print entries
-            // 对文件路径进行切割
-            var array = zipEntry.name.split('/');
-            var arrayLen = 0;
-            for(var i in array){
-            	arrayLen++;
-            }
-            // 包含中文
-            //if(/.*[\u4e00-\u9fa5]+.*$/.test(zipEntry.name)){  
-            	//$fileContent.append("<p style='color:red'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;含有中文，无法上传！" + "</p>");
-           // 首先判断文件目录结构正确
-           if(arrayLen == 2 || arrayLen == 3){
-           // 含有一级目录（arrayLen==2）或者二级目录（araryLen==3）或者dcom文件（arrayLen==3）
-            	//在这里准备检查重名以及是否含有-
-            	if(!(/_/.test(array[0]))){
-            		// 检查重名
-    	            if(arrayLen == 2){            	            		            	
-    	            	$fileContent.append("<p style='color:green'>" + zipEntry.name+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;符合上传要求，请点击上传按钮。" + "</p>");
-    	            }
-    	            // 判断是dcm文件
-    	            if(arrayLen == 3 && /.dcm/.test(array[arrayLen-1])){
-    	            	// 判断二级目录和三级目录中是否含有中文以及特殊字符
-    	            	//var patt1=new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?_~！@#￥……&*（）——|{}【】‘；：”“'。，、？]$");
-    	            	if(/.*[\u4e00-\u9fa5]+.*$/.test(array[arrayLen-1]) || /.*[\u4e00-\u9fa5]+.*$/.test(array[arrayLen-2])){
-    	            		$fileContent.append("<p style='color:red'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;压缩包中含有中文名称或特殊符号，请修改后上传！" + "</p>");
-    	            		fileError.push("\n " + zipEntry.name + "  压缩包中含有中文名称，请修改后上传！");
-    	            	}else{
-    	            		$fileContent.append("<p style='color:green'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;符合上传要求，请点击上传按钮。" + "</p>");	            		
-    	            	}
-    	            }
-    	            // 判断三级目录下不是dcm文件
-    	            else if(arrayLen == 3 && (/[0-9a-zA-Z]/.test(array[arrayLen-1]))){
-    	            		$fileContent.append("<p style='color:red'>" +zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非dcm文件，请删除后上传。" + "</p>");
-    	            		fileError.push("\n " + zipEntry.name + "    非dcm文件，请删除后上传");
-    	            }
-            	}else{
-            		$fileContent.append("<p style='color:red'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[0]+"中含有下划线，请修改后上传！" + "</p>");
-            		fileError.push("\n " + zipEntry.name +"  " + array[0] + "中含有下划线，请修改后上传！");
-            	}
-            	
-           }else{
-            	 alert(zipEntry.name + "文件目录结构不符合要求！")
-            }
-           
-            });
-			if(fileError.length == 0){
-				alert("上传文件检查合格，请点击上传文件按钮。");
-			}else{				
-				alert(fileError);
-			}
-			fileError = [];
-        }, function (e) {
-        	$("#result").append($("<div>", {
-                "class" : "alert alert-danger",
-                text : "Error reading " + f.name + ": " + e.message
-            }));
-        });
-    }
-
-    var files = evt.target.files;
-    for (var i = 0; i < files.length; i++) {
-        handleFile(files[i]);
-    }
-});
-});
-</script>
 <style type="text/css">
-#file{
+#file01{
  	display: none;
 }
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#but").click(function(){
-		$("#file").click();
+		$("#file01").click();
 	});
 });
 </script>
@@ -170,7 +71,7 @@ session.setAttribute("name",name1);%>
         					   <input type="file" name="uploadify" id="uploadify" />
         					   <!-- <button id="but" style="position: absolute;margin-bottom: 2em;left: -250.5%;background-color:green;color:white;width:150px;height:45px">点击上传文件</button> -->
         					   <img id="but" src="images/check.png" style="position: absolute;margin-bottom: 2em;left: -250.5%;top:5%"></img>
-        					   <input type="file" name="file" id="file" />       					     		
+        					   <input type="file" name="file01" id="file01" />       					     		
         					</div>   
      			        </div>
      				 </div>
