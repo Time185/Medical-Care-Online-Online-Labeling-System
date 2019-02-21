@@ -243,7 +243,7 @@ function onSearch(obj){//js函数开始
 				user = (User) session.getAttribute("sessionUser");
 				name = user.getLoginname();
 				session.setAttribute("name", name);
-				System.out.println("失败！"+session.getAttribute("returnUrl"));
+				System.out.println("失败******！"+session.getAttribute("returnUrl"));
 				int x = name.indexOf("_");
 				String thisHospital = name.substring(0, x);
 				String thisDoctor = name.substring(x + 1, name.length());

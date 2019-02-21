@@ -86,9 +86,10 @@
     	            }
     	            // 判断是dcm文件
     	            if(arrayLen == 3 && /.dcm/.test(array[arrayLen-1])){
-    	            	// 判断二级目录和三级目录中是否含有中文
+    	            	// 判断二级目录和三级目录中是否含有中文以及特殊字符
+    	            	//var patt1=new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?_~！@#￥……&*（）——|{}【】‘；：”“'。，、？]$");
     	            	if(/.*[\u4e00-\u9fa5]+.*$/.test(array[arrayLen-1]) || /.*[\u4e00-\u9fa5]+.*$/.test(array[arrayLen-2])){
-    	            		$fileContent.append("<p style='color:red'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;压缩包中含有中文名称，请修改后上传！" + "</p>");
+    	            		$fileContent.append("<p style='color:red'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;压缩包中含有中文名称或特殊符号，请修改后上传！" + "</p>");
     	            		fileError.push("\n " + zipEntry.name + "  压缩包中含有中文名称，请修改后上传！");
     	            	}else{
     	            		$fileContent.append("<p style='color:green'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;符合上传要求，请点击上传按钮。" + "</p>");	            		
@@ -109,7 +110,12 @@
             }
            
             });
-			alert(fileError);
+			if(fileError.length == 0){
+				alert("上传文件检查合格，请点击上传文件按钮。");
+			}else{				
+				alert(fileError);
+			}
+			fileError = [];
         }, function (e) {
         	$("#result").append($("<div>", {
                 "class" : "alert alert-danger",
@@ -148,10 +154,7 @@ System.out.println(name1+"--------name1");
 session.setAttribute("name",name1);%>
 <section role="main" class="l-main" style="margin-top:90px;margin-bottom:50px;">
     <div id="flashInstall" align="center" style="display:none;"> 火狐浏览器安装Flash插件: <a href="https://mp.weixin.qq.com/s/sdjdHGt6zw6nRE_b6_6lhA" target="_Blank">点击查看教程</a></div>
-    <div class="width_auto" id="flashInstall1"style="display:none;">
-    <div id="result_block" class="hidden">
-    	<h3>Content :</h3>
-		<div id="result" ></div>
+    <div class="width_auto" id="flashInstall1"style="display:none;">   
     <div id="container">
         <!--头部，相册选择和格式选择-->
         <div id="uploader" >
@@ -165,7 +168,8 @@ session.setAttribute("name",name1);%>
         					<div id="fileQueue">
         					   
         					   <input type="file" name="uploadify" id="uploadify" />
-        					   <button id="but" style="position: absolute;margin-bottom: 2em;left: -250.5%;background-color:green;">查看文件结构</button>
+        					   <!-- <button id="but" style="position: absolute;margin-bottom: 2em;left: -250.5%;background-color:green;color:white;width:150px;height:45px">点击上传文件</button> -->
+        					   <img id="but" src="images/check.png" style="position: absolute;margin-bottom: 2em;left: -250.5%;top:5%"></img>
         					   <input type="file" name="file" id="file" />       					     		
         					</div>   
      			        </div>
@@ -174,7 +178,6 @@ session.setAttribute("name",name1);%>
       		 </div>
           </div>
         </div>  
-      </div>
     </div>
 </section>
 <script type="text/javascript"> 
