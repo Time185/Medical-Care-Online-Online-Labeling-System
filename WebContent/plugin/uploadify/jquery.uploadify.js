@@ -78,7 +78,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 */
 
 (function($) {
-
+	
 	// These methods can be called by adding them as the first argument in the uploadify plugin call
 	var methods = {
 
@@ -126,7 +126,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 					height          : 50,                 // The height of the browse button
 					
 					// Events
-					overrideEvents  : [],           // (Array) A list of default event handlers to skip
+					overrideEvents  : [],  // (Array) A list of default event handlers to skip
 					/*
 					onCancel         // Triggered when a file is cancelled from the queue
 					onClearQueue     // Triggered during the 'clear queue' method
@@ -203,10 +203,9 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 
 				if (flashInstalled) {
 				    var swfuploadify = new SWFUpload(swfUploadSettings); ;
-
 				    // Add the SWFUpload object to the elements data object
 				    $this.data('uploadify', swfuploadify);
- 
+				    
 				    $('#' + swfuploadify.movieName).parent().attr('id', settings.id).addClass('uploadify').css({
 				        'height': settings.height +'px',
 				        'width': settings.width +10+ 'px',
@@ -241,7 +240,6 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 				        });*/
 				    // Append the button to the wrapper
 				    $wrapper.append($button);
-				    
 				  
 				    // Create the file queue
 				   /* if (settings.queueID) {*/
@@ -520,8 +518,8 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 
 		// Start uploading files in the queue
 		upload : function() {
-
 			var args = arguments;
+			
 
 			this.each(function() {
 				// Create a reference to the jQuery DOM object
@@ -564,7 +562,6 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 		onDialogOpen : function() {
 			// Load the swfupload settings
 			var settings = this.settings;
-
 			// Reset some queue info
 			this.queueData.errorMsg       = 'Some files were not added to the queue:';
 			this.queueData.filesReplaced  = 0;
@@ -576,6 +573,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 
 		// Triggered when the browse dialog is closed
 		onDialogClose :  function(filesSelected, filesQueued, queueLength) {
+			
 			// Load the swfupload settings
 			var settings = this.settings;
 
@@ -601,6 +599,8 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 
 		// Triggered once for each file added to the queue
 		onSelect : function(file) {
+			
+			
 			// Load the swfupload settings
 			var settings = this.settings;
 			// Check if a file with the same name exists in the queue

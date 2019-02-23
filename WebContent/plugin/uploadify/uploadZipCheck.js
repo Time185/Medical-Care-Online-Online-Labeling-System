@@ -1,4 +1,4 @@
-// 用来存放不符合规定的文件条目
+   // 用来存放不符合规定的文件条目
 	var fileError = new Array();	
 	//$("#file").on("change", function(evt) {
 	$(document).ready(function(){
@@ -110,6 +110,8 @@
     var files = evt.target.files;
   
     for (var i = 0; i < files.length; i++) {
+    	alert(456);
+    	alert(files[0]);
         handleFile(files[i],fileError);
     }
 });
