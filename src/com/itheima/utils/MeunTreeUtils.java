@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
-import com.sun.jndi.url.iiopname.iiopnameURLContextFactory;
+//import com.sun.jndi.url.iiopname.iiopnameURLContextFactory;
 
 public class MeunTreeUtils {
 	static String meun_path;
