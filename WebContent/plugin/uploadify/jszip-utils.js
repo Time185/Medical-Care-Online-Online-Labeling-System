@@ -1,112 +1,118 @@
-// 用来存放不符合规定的文件条目
-	var fileError = new Array();	
-	//$("#file").on("change", function(evt) {
-	$(document).ready(function(){
-	
-	$("#file01").on("change" ,function(evt) {
-	// 清空之前显示的条目
-    $("#result").html("");
-    // be sure to show the results
-    
-    $("#result_block").removeClass("hidden").addClass("show");
-    // Closure to capture the file information.
-    function handleFile(f) {
-        // 压缩包名称
-        
-    	
-    	var $title = $("<h4>", {
-            text : f.name
-        });
-    	
-        var $fileContent = $("<h5>");
-        $("#result").append($title);
-        $("#result").append($fileContent);
-        var dateBefore = new Date();
-        // 加载zip文件
-        JSZip.loadAsync(f)                                   // 1) read the Blob
-        .then(function(zip) {
-             
-         	
-            zip.forEach(function (relativePath, zipEntry) {  // 2) print entries
-            
-            // 对文件路径进行切割
-            var array = zipEntry.name.split('/');
-            var arrayLen = 0;
-            for(var i in array){
-            	arrayLen++;
-            }
-            // 包含中文
-            //if(/.*[\u4e00-\u9fa5]+.*$/.test(zipEntry.name)){  
-            	//$fileContent.append("<p style='color:red'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;含有中文，无法上传！" + "</p>");
-           // 首先判断文件目录结构正确
-           
-           if(arrayLen == 2 || arrayLen == 3){
-           // 含有一级目录（arrayLen==2）或者二级目录（araryLen==3）或者dcom文件（arrayLen==3）
-            	//在这里准备检查重名以及是否含有-
-            	if(!(/_/.test(array[0]))){
-            		// 检查重名
-    	            if(arrayLen == 2){ 
-    	           		// 判断二级目录为文件夹，而不是文件    	           		
-    	            	if(!((/\./).test(array[arrayLen-1]))){
-    	            		// 这里为二级文件夹   用来判断重名    	            		
-    	            	}else{
-    	            		$fileContent.append("<p style='color:red'>" +zipEntry.name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"' + array[arrayLen-1] +'"不是文件夹，请删除后上传！' + "</p>");
-    	            		fileError.push("\n " + zipEntry.name +' " ' + array[arrayLen-1] +' " ' + "不是文件夹，请删除后上传");
-    	            	}
-    	            	
-    	            }
-    	            // 判断是dcm文件
-    	            if(arrayLen == 3 && /.dcm/.test(array[arrayLen-1])){
-    	            	// 三级目录中是否含有中文dcm文件
-    	            	//if(/.*[\u4e00-\u9fa5]+.*$/.test(array[arrayLen-1]) || /.*[\u4e00-\u9fa5]+.*$/.test(array[arrayLen-2])){
-    	            	if(/.*[\u4e00-\u9fa5]+.*$/.test(array[arrayLen-1])) {
-    	            		$fileContent.append("<p style='color:red'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[arrayLen-1] + "中含有中文名称，请修改后上传！" + "</p>");
-    	            		fileError.push("\n " + zipEntry.name + ' " ' + array[arrayLen-1]+ ' " ' + "中含有中文名称，请修改后上传！");
-    	            	// 判断二级目录是否含有中文
-    	            	}else if(/.*[\u4e00-\u9fa5]+.*$/.test(array[arrayLen-2])){
-    	            		$fileContent.append("<p style='color:red'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[arrayLen-2] + "中含有中文名称，请修改后上传！" + "</p>");
-    	            		fileError.push("\n " + zipEntry.name + ' " ' + array[arrayLen-2]+ ' " ' +"中含有中文名称，请修改后上传！");
-    	            	// 判断二级目录中含有文件，二级目录必须全部为文件夹
-    	            	}else if(arrayLen == 3 && (/\./).test(array[arrayLen-2])){
-    	            		$fileContent.append("<p style='color:red'>" +zipEntry.name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"' + array[arrayLen-2] +'"不是文件夹，请删除后上传！' + "</p>");
-    	            		fileError.push("\n " + zipEntry.name +' " ' + array[arrayLen-2] +' " ' + "不是文件夹，请删除后上传");
-    	            	}
-    	            	// 正确的dcm文件
-    	            	else{
-    	            		$fileContent.append("<p style='color:green'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;符合上传要求，请点击上传按钮。" + "</p>");	            		
-    	            	}
-    	            }
-    	            // 判断三级目录下不是dcm文件
-    	            else if(arrayLen == 3 && (/[0-9a-zA-Z\u4e00-\u9fa5]/.test(array[arrayLen-1]))){
-    	            		$fileContent.append("<p style='color:red'>" +zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;非dcm文件，请删除后上传。" + "</p>");
-    	            		fileError.push("\n " + zipEntry.name + "    非dcm文件，请删除后上传");
-    	            }
-            	}else{
-            		$fileContent.append("<p style='color:red'>" + zipEntry.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + array[0]+"中含有下划线，请修改后上传！" + "</p>");
-            		fileError.push("\n " + zipEntry.name +"  " + array[0] + "中含有下划线，请修改后上传！");
-            	}
-            	
-           }else{
-            	 alert(zipEntry.name + "文件目录结构不符合要求！")
-            }
-            });	
-			if(fileError.length == 0){
-				alert("上传文件检查合格，请点击上传文件。");
-			}else{
-				alert(fileError);
-			}
-           	fileError = [];
-        }, function (e) {
-        	$("#result").append($("<div>", {
-                "class" : "alert alert-danger",
-                text : "Error reading " + f.name + ": " + e.message
-            }));
-        });
-    }
+/*!
 
-    var files = evt.target.files;
-    for (var i = 0; i < files.length; i++) {
-        handleFile(files[i],fileError);
+JSZipUtils - A collection of cross-browser utilities to go along with JSZip.
+<http://stuk.github.io/jszip-utils>
+
+(c) 2014 Stuart Knightley, David Duponchel
+Dual licenced under the MIT license or GPLv3. See https://raw.github.com/Stuk/jszip-utils/master/LICENSE.markdown.
+
+*/
+!function(e){"object"==typeof exports?module.exports=e():"function"==typeof define&&define.amd?define(e):"undefined"!=typeof window?window.JSZipUtils=e():"undefined"!=typeof global?global.JSZipUtils=e():"undefined"!=typeof self&&(self.JSZipUtils=e())}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
+var JSZipUtils = {};
+// just use the responseText with xhr1, response with xhr2.
+// The transformation doesn't throw away high-order byte (with responseText)
+// because JSZip handles that case. If not used with JSZip, you may need to
+// do it, see https://developer.mozilla.org/En/Using_XMLHttpRequest#Handling_binary_data
+JSZipUtils._getBinaryFromXHR = function (xhr) {
+    // for xhr.responseText, the 0xFF mask is applied by JSZip
+    return xhr.response || xhr.responseText;
+};
+
+// taken from jQuery
+function createStandardXHR() {
+    try {
+        return new window.XMLHttpRequest();
+    } catch( e ) {}
+}
+
+function createActiveXHR() {
+    try {
+        return new window.ActiveXObject("Microsoft.XMLHTTP");
+    } catch( e ) {}
+}
+
+// Create the request object
+var createXHR = window.ActiveXObject ?
+    /* Microsoft failed to properly
+     * implement the XMLHttpRequest in IE7 (can't request local files),
+     * so we use the ActiveXObject when it is available
+     * Additionally XMLHttpRequest can be disabled in IE7/IE8 so
+     * we need a fallback.
+     */
+    function() {
+    return createStandardXHR() || createActiveXHR();
+} :
+    // For all other browsers, use the standard XMLHttpRequest object
+    createStandardXHR;
+
+
+
+JSZipUtils.getBinaryContent = function(path, callback) {
+    /*
+     * Here is the tricky part : getting the data.
+     * In firefox/chrome/opera/... setting the mimeType to 'text/plain; charset=x-user-defined'
+     * is enough, the result is in the standard xhr.responseText.
+     * cf https://developer.mozilla.org/En/XMLHttpRequest/Using_XMLHttpRequest#Receiving_binary_data_in_older_browsers
+     * In IE <= 9, we must use (the IE only) attribute responseBody
+     * (for binary data, its content is different from responseText).
+     * In IE 10, the 'charset=x-user-defined' trick doesn't work, only the
+     * responseType will work :
+     * http://msdn.microsoft.com/en-us/library/ie/hh673569%28v=vs.85%29.aspx#Binary_Object_upload_and_download
+     *
+     * I'd like to use jQuery to avoid this XHR madness, but it doesn't support
+     * the responseType attribute : http://bugs.jquery.com/ticket/11461
+     */
+    try {
+
+        var xhr = createXHR();
+
+        xhr.open('GET', path, true);
+
+        // recent browsers
+        if ("responseType" in xhr) {
+            xhr.responseType = "arraybuffer";
+        }
+
+        // older browser
+        if(xhr.overrideMimeType) {
+            xhr.overrideMimeType("text/plain; charset=x-user-defined");
+        }
+
+        xhr.onreadystatechange = function(evt) {
+            var file, err;
+            // use `xhr` and not `this`... thanks IE
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200 || xhr.status === 0) {
+                    file = null;
+                    err = null;
+                    try {
+                        file = JSZipUtils._getBinaryFromXHR(xhr);
+                    } catch(e) {
+                        err = new Error(e);
+                    }
+                    callback(err, file);
+                } else {
+                    callback(new Error("Ajax error for " + path + " : " + this.status + " " + this.statusText), null);
+                }
+            }
+        };
+
+        xhr.send();
+
+    } catch (e) {
+        callback(new Error(e), null);
     }
+};
+
+// export
+module.exports = JSZipUtils;
+
+// enforcing Stuk's coding style
+// vim: set shiftwidth=4 softtabstop=4:
+
+},{}]},{},[1])
+(1)
 });
-});
+;

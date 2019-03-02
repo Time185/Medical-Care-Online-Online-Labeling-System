@@ -27,8 +27,10 @@
         }
     </style>
 <script src="plugin/uploadify/jquery-1.11.3.js" type="text/javascript"></script>
-<script src="http://stuk.github.io/jszip/dist/jszip.js"></script>
-<script src="http://stuk.github.io/jszip-utils/dist/jszip-utils.js"></script>
+<!-- <script src="http://stuk.github.io/jszip/dist/jszip.js"></script>
+<script src="http://stuk.github.io/jszip-utils/dist/jszip-utils.js"></script> -->
+<script src="plugin/uploadify/jszip.js"></script>
+<script src="plugin/uploadify/jszip-utils.js"></script>
 <script src="plugin/uploadify/jquery.uploadify.js" type="text/javascript"></script>
 
 <script type="text/javascript">
