@@ -13,6 +13,7 @@
 	framespacing="0" frameborder="no" border="0"> <frame
 	src="left.jsp" name="leftmenu" id="mainFrame" title="mainFrame">
 	
-<frame src="<%=session.getAttribute("returnUrl") %>" target="_top" name="main" scrolling="yes" noresize="noresize"
+<%-- <frame src="<%=session.getAttribute("returnUrl") %>" target="_top" name="main" scrolling="yes" noresize="noresize" --%>
+<frame src="http://10.15.0.10:8080/BB/jsps/test.jsp?param0=000&param1=000&param2=000&param3=000&param4=000&param5=000" target="_top" name="main" scrolling="yes" noresize="noresize"
 	id="rightFrame" title="rightFrame"></frameset></frameset>
 </html>
