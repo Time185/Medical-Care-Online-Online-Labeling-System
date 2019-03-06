@@ -8,7 +8,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 	margin-bottom: 2em; 
 	left:68.5%;
 	top:110%;
-	background-image:url("../../images/choose.png");
+	background-image:url("../../images/choose.png"); 
 	background-repeat: no-repeat;
 }
 
@@ -17,7 +17,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 .uploadify-button.disabled { 
 	background-color: #D0D0D0;
 	color: #808080;
-}
+} 
 
 .uploadify-queue {
 	margin-bottom: 5em;

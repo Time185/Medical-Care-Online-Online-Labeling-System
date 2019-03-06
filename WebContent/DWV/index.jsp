@@ -70,6 +70,14 @@
 <!-- Launch the app -->
 <script type="text/javascript" >
       //The location of state.json and uploadServlet
+            var needStoreIf=0;
+      var loadImageIf=0;
+      var lastlabel="";
+      var loadlabel=0;
+      var sliceNow=-1;
+      var jsontostore =[];
+      var commentsList=[];
+      
       var loadErrorForCannotOk="请耐心等待界面顶端蓝色进度条加载完毕，如两分钟还未加载完毕，请返回选择其他文件夹进行标注";
       var sliceChangeIf=0;
       var alertOnlyOnce=0;
@@ -85,6 +93,7 @@
       }
       //var loadIf= 1;
       var jsonUrl="<%=session.getAttribute("jsonPath")%>"+"|"+random;
+      var commentsJsonUrl="<%=session.getAttribute("commentsJsonPath")%>"+"|"+random;
       <%System.out.println(session.getAttribute("jsonPath")+"-----------index");%>
       var uploadServletUrl="http://10.15.0.10:8080/BB/UploadServlet";
       var dicomList=["http://10.15.0.10:8080/BB/2/1.dcm"
@@ -111,6 +120,41 @@
 <script type="text/javascript" src="src/register-sw.js"></script>
 <script type="text/javascript" src="src/appgui.js"></script>
 <script type="text/javascript" src="src/applauncher.js"></script>
+
+<script type="text/javascript">
+
+function storeToJson(){
+	 needStoreIf=1;
+	 loadImageIf=1;
+	 loadReady=1;
+	 //var lastlabel="";
+	 //var loadlabel=1;
+	 var comments = document.getElementById("commentsNowSlice");
+	 var row1 = {};
+	 row1.id= sliceNow;
+	 row1.comments =comments.value;
+	 var count=0;
+	 for (var i=0;i<jsontostore.length;i++)
+	 {
+		 if (jsontostore[i].id==sliceNow){
+			 jsontostore[i].comments=comments.value;
+			 count=1;
+		 }
+	 }
+	 if(count==0){
+	 jsontostore.push(row1);
+	 }
+ }
+var commentsUrl = commentsJsonUrl.split("|")[0];
+$.getJSON(commentsUrl, function(json){
+	    $.each(json,function(infoIndex,info){
+	        var row1 = {};
+	   	    row1.id= info["id"];
+	   	    row1.comments =info["comments"];
+	   	    jsontostore.push(row1);	  
+	      })
+})	
+</script>
 </head>
 
 <body>
@@ -157,7 +201,15 @@ style="color:red ; font-size:50px">请点击左上角返回按键</h1></div>
 <div id="dwv-loaderlist"></div>
 </div>
 </div><!-- /popup -->
-
+<div>
+<table border="0" style="float:left">
+  <tr>
+    <th>Dicom切片标注信息</th>
+  </tr>
+  <td><textarea rows="50" cols="30" onchange="storeToJson()" id="commentsNowSlice">
+Correct!
+</textarea></td>
+</table>
 <!-- Layer Container -->
 <div class="layerContainer">
 <div class="dropBox"></div>

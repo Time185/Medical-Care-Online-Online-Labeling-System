@@ -380,19 +380,29 @@ function onSearch(obj){//js函数开始
 							File  tagDicomPath = new File(resParentPath);
 							if(tagDicomPath.exists()){
 								String jsonPath=resParentPath+File.separator+"state.json";
+								String commentsJsonPath = resParentPath+"/comments.json";
 								jsonPath=jsonPath.replace(temp,"http://10.15.0.10:8080/test");
 								jsonPath=jsonPath.replace("/", "/");
 								session.setAttribute("resParentPath",resParentPath);
 								System.out.println(jsonPath+"----------------res");
 								session.setAttribute("jsonPath",jsonPath);
+								commentsJsonPath=commentsJsonPath.replace(temp,"http://10.15.0.10:8080/test");
+								commentsJsonPath=commentsJsonPath.replace("/", "/");
+								session.setAttribute("commentsJsonPath",commentsJsonPath);
+								System.out.println(commentsJsonPath + "****************---------");
 								session.setAttribute("loadIf", "1");
 							}else{
 								String jsonPath=resParentPath+File.separator+"state.json";
+								String commentsJsonPath = resParentPath+"/comments.json";
 								jsonPath=jsonPath.replace(temp,"http://10.15.0.10:8080/test");
 								jsonPath=jsonPath.replace("/", "/");
 								session.setAttribute("resParentPath",resParentPath);
+								System.out.println(jsonPath+"----------------res");
 								session.setAttribute("jsonPath",jsonPath);
-								session.setAttribute("loadIf", "0");
+								commentsJsonPath=commentsJsonPath.replace(temp,"http://10.15.0.10:8080/test");
+								commentsJsonPath=commentsJsonPath.replace("/", "/");
+								session.setAttribute("commentsJsonPath",commentsJsonPath);
+								session.setAttribute("loadIf", "1");
 							}
 							
 						}
@@ -581,6 +591,7 @@ function onSearch(obj){//js函数开始
 				<% 
 				int numdir_=(int)numdir_hash.getOrDefault(childs[i].getAbsolutePath(),0);
 				int marknum_=maskFile(childs[i].getAbsolutePath());
+				System.out.println(childs[i].getAbsolutePath() + "\\\\\\\\\\\\\\]]]]]]]]]]");
 				int yesnum_=yesFile(childs[i].getAbsolutePath());
 				numdir_=numdir_-marknum_;
 				numdir_=numdir_-yesnum_;
@@ -590,7 +601,7 @@ function onSearch(obj){//js函数开始
 				<td ><%=getSequence(childs[i]) %></td>
 				<td ><%=short_name %></td>
 				<td ><%=numdir_%></td>
-				<td ><%=yesnum_%></td>
+				<td ><%=marknum_%></td>
 				<%
 				
 				String webUrl=websit + "param0=" +URLEncoder.encode(parameter[0], "UTF-8")+ "&" + "param1=" + parameter[1] + "&" + "param2="
@@ -709,7 +720,7 @@ function onSearch(obj){//js函数开始
 				int marknum_=(int)numdir_hash.getOrDefault(childs[i].getAbsolutePath()+"_mask",0);
 				int yesnum_=yesnum_hash.getOrDefault(childs[i].getAbsolutePath(),0);
 				String timeShow="";
-				if(marknum_>0) { marknum_--; timeShow="_mask";}
+				if(marknum_>0) { marknum_-=2; timeShow="_mask";}
 				if(yesnum_>0)marknum_=numdir_;
 				System.out.println("childs.length1*******************************************"+returnUrl);
 				System.out.println("3333"+parameter[0] +"3333333"+parameter[1]+"3333333"+parameter[2]+"333333333333*"+

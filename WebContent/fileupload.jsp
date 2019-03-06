@@ -205,7 +205,7 @@ session.setAttribute("name",name1);%>
             <div class="item_container">
                   <div id="queueList" class="queueList" >
                     <div style="position:relative; font:normal 14px/24px 'MicroSoft YaHei';">
-                       <p>说明：仅支持大小不超过700MB的zip压缩文件,个数不超过5个， 患者文件夹名称不得含中文和符号</p>        
+                       <p style="color:red">说明：仅支持大小不超过700MB的zip压缩文件,个数不超过5个，上传文件之前请进行上传文件检查，检查合格之后，点击上传文件。</p>        
                                     
                        <div id="dndArea" class="placeholder">
         					<!--用来作为文件队列区域-->
@@ -277,9 +277,10 @@ $(document).ready(function() {
         'queueSizeLimit' : 5,    //限制在一次队列中的次数（可选定几个文件）
         'removeCompleted': true, //是否自动将已完成任务从队列中删除，如果设置为false则会一直保留此任务显示。
         'fileTypeExts'   : '*.zip',  //控制可上传文件的扩展名，启用本项时需同时声明fileDesc
-        'fileTypeDesc'   : 'zip文件',
+        'fileTypeDesc'   : 'zip文件', 
         'fileSizeLimit'  : '700MB', //限制上传文件大小
         'onSelectError'  : uploadify_onSelectError,
+        'hideButton'	 : false,
     });
     
     

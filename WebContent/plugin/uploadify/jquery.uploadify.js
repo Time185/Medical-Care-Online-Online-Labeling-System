@@ -600,7 +600,8 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 		// Triggered once for each file added to the queue
 		onSelect : function(file) {
 			
-			
+			alert(file);
+			alert(file.type);
 			// Load the swfupload settings
 			var settings = this.settings;
 			// Check if a file with the same name exists in the queue
