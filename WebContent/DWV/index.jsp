@@ -163,7 +163,7 @@ $.getJSON(commentsUrl, function(json){
 <div data-role="page" data-theme="b" id="main">
 
 <!-- pageHeader #dwvversion -->
-<div id="pageHeader" data-role="header">
+<div id="pageHeader" data-role="header" style="height:80px;">
 <h1>大智慧医疗在线标注系统 <span class="dwv-version"></span></h1>
 <a href="javascript:" onclick="window.location.href='http://10.15.0.10:8080/BB/qiye_admin/HTML_model/index.jsp';" data-icon="carat-l" class="ui-btn-left"
   data-transition="slide" data-i18n="basics.back">back</a>
@@ -178,7 +178,8 @@ style="color:red ; font-size:50px">请点击左上角返回按键</h1></div>
 <div id="pageMain" data-role="content" style="padding:2px;">
 
 <!-- Toolbar -->
-<div class="toolbar"></div>
+<div class="localtion"></div>
+<div class="toolbar" style="float:left;width:10%"  ></div>
 
 <!-- Auth popup -->
 <div data-role="popup" id="popupAuth">
@@ -201,12 +202,11 @@ style="color:red ; font-size:50px">请点击左上角返回按键</h1></div>
 <div id="dwv-loaderlist"></div>
 </div>
 </div><!-- /popup -->
-<div>
-<table border="0" style="float:left">
+<table border="0" style="margin-left:10px;float:left;">
   <tr>
-    <th>Dicom切片标注信息</th>
+    <th>当前切片标注信息</th>
   </tr>
-  <td><textarea rows="50" cols="30" onchange="storeToJson()" id="commentsNowSlice">
+  <td><textarea rows="50" cols="30" style="background-color:rgb(101, 103, 105);color:write;" onchange="storeToJson()" id="commentsNowSlice">
 Correct!
 </textarea></td>
 </table>

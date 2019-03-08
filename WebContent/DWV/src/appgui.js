@@ -174,39 +174,55 @@ dwv.gui.Toolbox = function (app)
         base.setup(list);
 
         // toolbar
-        var buttonClass = "ui-btn ui-btn-inline ui-btn-icon-notext ui-mini";
-
+        var buttonClass = "ui-btn ui-btn-inline ui-btn-icon-top ui-mini";
+        //var buttonClass1 = "ui-btn ui-btn-inline ui-btn-icon-top ui-mini";
+        
         var deleteButton = document.createElement("a");
+        var deleteButtonText= document.createTextNode("删除标注 ");
+        deleteButton.appendChild(deleteButtonText);
         deleteButton.setAttribute("class", buttonClass + " ui-icon-delete");
         deleteButton.onclick=app.onDeleteCurrentCanvas;
         deleteButton.title = dwv.i18n("basics.deleteButton");
+        
 
         var nextButton = document.createElement("a");
+        var nextButtonText= document.createTextNode("向下翻页 ");
+        nextButton.appendChild(nextButtonText);
         nextButton.setAttribute("class", buttonClass + " ui-icon-arrow-d");
         nextButton.onclick=app.onNext;
         nextButton.title = dwv.i18n("basics.nextButton");
         
         var lastButton = document.createElement("a");
+        var lastButtonText= document.createTextNode("向上翻页 ");
+        lastButton.appendChild(lastButtonText);
         lastButton.setAttribute("class", buttonClass + " ui-icon-arrow-u");
         lastButton.onclick=app.onLast;
         lastButton.title = dwv.i18n("basics.lastButton");
         
         var undo = document.createElement("a");
+        var undoButtonText= document.createTextNode("向前回滚 ");
+        undo.appendChild(undoButtonText);
         undo.setAttribute("class", buttonClass + " ui-icon-back");
         undo.onclick = app.onUndo;
         undo.title = dwv.i18n("basics.undo");
 
         var redo = document.createElement("a");
+        var redoButtonText= document.createTextNode("向后回滚 ");
+        redo.appendChild(redoButtonText);
         redo.setAttribute("class", buttonClass + " ui-icon-forward");
         redo.onclick = app.onRedo;
         redo.title = dwv.i18n("basics.redo");
 
         var toggleInfo = document.createElement("a");
+        var toggleInfoButtonText= document.createTextNode("DCM信息");
+        toggleInfo.appendChild(toggleInfoButtonText);
         toggleInfo.setAttribute("class", buttonClass + " ui-icon-info");
         toggleInfo.onclick = app.onToggleInfoLayer;
         toggleInfo.title = dwv.i18n("basics.toggleInfo");
 
         var toggleSaveState = document.createElement("a");
+        var toggleSaveStateButtonText= document.createTextNode("保存标注 ");
+        toggleSaveState.appendChild(toggleSaveStateButtonText);
         toggleSaveState.setAttribute("class", buttonClass + " download-state ui-icon-action");
         toggleSaveState.onclick = app.onStateSave;
         //toggleSaveState.download = "state.json";
@@ -214,11 +230,15 @@ dwv.gui.Toolbox = function (app)
         
 
         var tags = document.createElement("a");
+        var tagsButtonText= document.createTextNode("DCM标签");
+        tags.appendChild(tagsButtonText);       
         tags.href = "#tags_page";
         tags.setAttribute("class", buttonClass + " ui-icon-grid");
         tags.title = dwv.i18n("basics.dicomTags");
 
         var drawList = document.createElement("a");
+        var drawListButtonText= document.createTextNode("添加注释 ");
+        drawList.appendChild(drawListButtonText); 
         drawList.href = "#drawList_page";
         drawList.setAttribute("class", buttonClass + " ui-icon-edit");
         drawList.title = dwv.i18n("basics.drawList");
@@ -229,7 +249,8 @@ dwv.gui.Toolbox = function (app)
  
 
         var node = app.getElement("toolbar");
-        node.appendChild(labelInfo);
+        var localtion=app.getElement("localtion");
+        localtion.appendChild(labelInfo);
         node.appendChild(deleteButton);
         node.appendChild(undo);
         node.appendChild(redo);
